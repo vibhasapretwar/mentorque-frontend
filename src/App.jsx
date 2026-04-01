@@ -14,7 +14,8 @@ import AdminMentors from './pages/admin/AdminMentors';
 import AdminBookings from './pages/admin/AdminBookings';
 
 function RootRedirect() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();  // add loading
+  if (loading) return null;  
   if (!user) return <Navigate to="/login" replace />;
   return <Navigate to={`/${user.role}`} replace />;
 }
